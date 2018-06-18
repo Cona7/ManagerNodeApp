@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
+  - PureLayout (3.0.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - Charts
+  - PureLayout
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Charts
+    - PureLayout
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+
+PODFILE CHECKSUM: 77a1e6723e1e9bb3737ede53849a61bd46ad84cb
+
+COCOAPODS: 1.5.3
