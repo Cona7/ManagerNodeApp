@@ -26,7 +26,6 @@ class NodeInfoViewCell: UITableViewCell {
         nameLabel.text = ""
     }
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.font = UIFont.systemFont(ofSize: 22)

@@ -13,7 +13,7 @@ class SensorReadingsViewModel{
     
     var nodeInfo: NodeInfo!
     
-     var sensorReadingsList: [Sensor] = []
+    var sensorReadingsList: [Sensor] = []
     
     convenience init(nodeInfo: NodeInfo){
         self.init()
@@ -22,7 +22,18 @@ class SensorReadingsViewModel{
     
     func fetchAllSensorReadings(completion: @escaping ([Sensor]?) -> Void) {
         
-        let urlBase = "http://10.19.4.127:8080/client/" + nodeInfo.getName() + "/sensor_temp/20180618131000"
+        
+        var connectors = nodeInfo.connectors
+        let removal: [Character] = [" "]
+        let unfilteredCharacters = connectors?.characters
+        let filteredCharacters = unfilteredCharacters?.filter { !removal.contains($0) }
+        let filteredConnectors = String(filteredCharacters!)
+        var con1 = filteredConnectors.split(separator: ",")[0]
+        
+        let timeNow = generateTime(delay: 0)
+        let timeBeforeFiveMinutes = generateTime(delay: -300)
+        
+        let urlBase = "http://10.19.4.127:8080/client/" + nodeInfo.getName() + "/" + con1 + "/" + timeBeforeFiveMinutes + "/" + timeNow
         
         guard let url = URL(string: urlBase) else {
             completion(nil)
@@ -49,4 +60,25 @@ class SensorReadingsViewModel{
                 print (self.sensorReadingsList.count)
         }
     }
+    
+    func generateTime(delay: Int) -> String {
+        
+        let removal: [Character] = [":"," ", "-"]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let myString = formatter.string(from: Date().addingTimeInterval(TimeInterval(delay)))
+        let yourDate = formatter.date(from: myString)
+        
+        formatter.dateFormat = "yyy-MM-dd HH:mm:ss"
+        let myStringafd = formatter.string(from: yourDate!)
+        
+        let unfilteredCharacters = myStringafd.characters
+        let filteredCharacters = unfilteredCharacters.filter { !removal.contains($0) }
+        let filtered = String(filteredCharacters)
+        
+        return filtered
+    }
+    
 }

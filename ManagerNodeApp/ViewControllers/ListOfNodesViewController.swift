@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import CoreGraphics
 
 class ListOfNodesViewController: UIViewController {
     
@@ -25,18 +24,12 @@ class ListOfNodesViewController: UIViewController {
         self.viewModel = viewModel
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        setupTableView()
-//        tableView.reloadData()
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
        setupData()
        setupTableView()
          tableView.tableFooterView = UIView()
-       //tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     func setupTableView() {
@@ -66,19 +59,15 @@ class ListOfNodesViewController: UIViewController {
 }
 
 extension ListOfNodesViewController: UITableViewDelegate {
-    
-    //ograničava da svi filmovi, odnosno redovi budu jednakih proporcija, slike
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
     
-    //postavi View klasu header za header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = ListOfNodesHeader()
         return view
     }
     
-    //dodjeli mu visinu
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 52.0
     }

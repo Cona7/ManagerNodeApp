@@ -15,7 +15,6 @@ class NodeInfoViewModel {
     
     let url = "http://10.19.4.127:8080/nodeRegister"
     
-    // With Alamofire
     func fetchAllNodes(completion: @escaping ([NodeInfo]?) -> Void) {
         guard let url = URL(string: url) else {
             completion(nil)
@@ -30,15 +29,13 @@ class NodeInfoViewModel {
                         completion(nil)
                     return
                 }
-                
-                //maybe add completition(nil) case
+
                 let value = response.result.value as? [[String: Any]]
                 for elem in value!{
                     self.nodeInfoList.append( NodeInfo(name: (elem["name"] as? String)!,
                                                        connectors: (elem["connectors"] as? String)!))
                 }
-                print (self.nodeInfoList.count)
-                completion(self.nodeInfoList)
+                completion(self.nodeInfoList) 
         }
     }
     
